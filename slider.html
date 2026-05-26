@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+.slider-container {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  border: 2px solid #333;
+}
+.slide {
+  display: none;
+  padding: 50px;
+  background-color: #f4f4f4;
+}
+.active {
+  display: block;
+}
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+  <div class="slide"><h1>Slide 1</h1></div>
+  <div class="slide"><h1>Slide 2</h1></div>
+  <div class="slide"><h1>Slide 3</h1></div>
+
+  <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="next" onclick="changeSlide(1)">&#10095;</button>
+</div>  
+
+<script>
+let currentIndex = 0;
+const slides = document.getElementsByClassName("slide");
+
+
+showSlide(currentIndex);
+
+function changeSlide(n) {
+  currentIndex += n;
+  if (currentIndex >= slides.length) { currentIndex = 0; }
+  if (currentIndex < 0) { currentIndex = slides.length - 1; }
+  showSlide(currentIndex);
+}
+
+function showSlide(index) {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove("active");
+  }
+  slides[index].classList.add("active");
+}
+</script>
+    
+</body>
+</html>
